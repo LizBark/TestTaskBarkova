@@ -18,9 +18,9 @@ public class Main {
     public Map<String, Integer> WordCount(String filepath) {
         Map<String, Integer> wordCounts = new HashMap<>();
 
-        try {
-            File myObj = new File(filepath);
-            Scanner fileReader = new Scanner(myObj);
+        try (Scanner fileReader = new Scanner(new File(filepath))){
+//            File myObj = new File(filepath);
+//            Scanner fileReader = new Scanner(myObj);
             while (fileReader.hasNextLine()) {
                 String line = fileReader.nextLine();
                 String[] wholeText = line.split("[^a-zA-Z']");

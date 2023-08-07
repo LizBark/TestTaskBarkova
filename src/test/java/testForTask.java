@@ -7,7 +7,11 @@ public class testForTask {
     @Test
     @DisplayName("Test for checking the correct number of words")
     public void testWordCount() {
-        String filepath = "C:/Users/ElizavetaBarkova/IdeaProjects/TestTaskT/src/main/java/org/example/sample.txt" ;
+        ClassLoader classLoader = getClass().getClassLoader();
+        String filepath = Objects.requireNonNull(classLoader.getResource("sample.txt")).getPath();
+
+        System.out.println("filepath found is "+filepath);
+
         Main forTest = new Main();
         Map<String, Integer> sortedMapAnswer = forTest.WordCount(filepath);
 
@@ -24,7 +28,8 @@ public class testForTask {
     @Test
     @DisplayName("Test for checking the correct order of words")
     public void testWordCountSort() {
-        String filepath = "C:/Users/ElizavetaBarkova/IdeaProjects/TestTaskT/src/main/java/org/example/sample.txt" ;
+        ClassLoader classLoader = getClass().getClassLoader();
+        String filepath = Objects.requireNonNull(classLoader.getResource("sample.txt")).getPath();
         Main forTest = new Main();
         Map<String, Integer> sortedMapAnswer = forTest.WordCount(filepath);
         List<Map.Entry<String, Integer>> entries = new ArrayList<>(sortedMapAnswer.entrySet());

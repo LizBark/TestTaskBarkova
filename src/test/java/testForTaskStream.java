@@ -7,7 +7,10 @@ public class testForTaskStream {
     @Test
     @DisplayName("Stream-Test for checking the correct number of words")
     public void testWordCount() {
-        String filepath = "C:/Users/ElizavetaBarkova/IdeaProjects/TestTaskT/src/main/java/org/example/sample.txt";
+
+        ClassLoader classLoader = getClass().getClassLoader();
+        String filepath = (Objects.requireNonNull(classLoader.getResource("sample.txt")).getPath()).substring(1);
+
         WordCountStream forTest = new WordCountStream();
         Map<String, Integer> sortedMapAnswer = forTest.WordCountStreamMethod(filepath);
 
@@ -24,7 +27,9 @@ public class testForTaskStream {
     @Test
     @DisplayName("Stream-Test for checking the correct order of words")
     public void testWordCountSort () {
-        String filepath = "C:/Users/ElizavetaBarkova/IdeaProjects/TestTaskT/src/main/java/org/example/sample.txt";
+        ClassLoader classLoader = getClass().getClassLoader();
+        String filepath = (Objects.requireNonNull(classLoader.getResource("sample.txt")).getPath()).substring(1);
+
         WordCountStream forTest = new WordCountStream();
         Map<String, Integer> sortedMapAnswer = forTest.WordCountStreamMethod(filepath);
         List<Map.Entry<String, Integer>> entries = new ArrayList<>(sortedMapAnswer.entrySet());
