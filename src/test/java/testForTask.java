@@ -1,5 +1,8 @@
 import org.example.Main;
 import org.junit.jupiter.api.*;
+
+import java.io.File;
+import java.net.URL;
 import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -7,12 +10,11 @@ public class testForTask {
     @Test
     @DisplayName("Test for checking the correct number of words")
     public void testWordCount() {
-        ClassLoader classLoader = getClass().getClassLoader();
-        String filepath = Objects.requireNonNull(classLoader.getResource("sample.txt")).getPath();
-
-        System.out.println("filepath found is "+filepath);
-
         Main forTest = new Main();
+        URL resource = getClass().getClassLoader().getResource("sampleA.txt");
+        assertNotNull(resource);
+        String filepath = new File(resource.getFile()).getAbsolutePath();
+
         Map<String, Integer> sortedMapAnswer = forTest.WordCount(filepath);
 
         assertEquals(7, sortedMapAnswer.get("chuck").intValue());
@@ -28,9 +30,10 @@ public class testForTask {
     @Test
     @DisplayName("Test for checking the correct order of words")
     public void testWordCountSort() {
-        ClassLoader classLoader = getClass().getClassLoader();
-        String filepath = Objects.requireNonNull(classLoader.getResource("sample.txt")).getPath();
         Main forTest = new Main();
+        URL resource = getClass().getClassLoader().getResource("sampleA.txt");
+        assertNotNull(resource);
+        String filepath = new File(resource.getFile()).getAbsolutePath();
         Map<String, Integer> sortedMapAnswer = forTest.WordCount(filepath);
         List<Map.Entry<String, Integer>> entries = new ArrayList<>(sortedMapAnswer.entrySet());
 
